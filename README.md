@@ -1,6 +1,6 @@
 # Deploy and Host ClassicPress on Railway
 
-[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/new/template/classicpress?referralCode=sLjDXb&utm_medium=integration&utm_source=button&utm_campaign=classicpress)
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/new/template/classicpress-cms?referralCode=sLjDXb&utm_medium=integration&utm_source=button&utm_campaign=classicpress-cms)
 
 [ClassicPress](https://www.classicpress.net/) is a community fork of WordPress for people who want a CMS without the block editor: the classic editor, a smaller codebase, and PHP 8 support. Most WordPress plugins and themes that don't depend on blocks work unchanged. This template runs it on the official image with a private MariaDB and no open installer.
 

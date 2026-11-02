@@ -1,7 +1,7 @@
 {
   "buckets": {},
   "services": {
-    "58b2e6b5-8381-4c23-9e98-6b8167b3d197": {
+    "4928d7bc-fd6d-4ec6-a676-86972e55dfdd": {
       "icon": "https://raw.githubusercontent.com/ClassicPress/ClassicPress-release/2.7.4/wp-admin/images/classicpress-logo.svg",
       "name": "ClassicPress",
       "build": {
@@ -60,12 +60,12 @@
         }
       },
       "volumeMounts": {
-        "58b2e6b5-8381-4c23-9e98-6b8167b3d197": {
+        "4928d7bc-fd6d-4ec6-a676-86972e55dfdd": {
           "mountPath": "/var/www/html"
         }
       }
     },
-    "38a6c194-ac3b-4927-880b-838e3d75fa25": {
+    "c7d15430-17d2-47da-b49b-fac7416d787a": {
       "icon": "https://raw.githubusercontent.com/docker-library/docs/master/mariadb/logo.png",
       "name": "MariaDB",
       "build": {},
@@ -109,7 +109,7 @@
         "serviceDomains": {}
       },
       "volumeMounts": {
-        "38a6c194-ac3b-4927-880b-838e3d75fa25": {
+        "c7d15430-17d2-47da-b49b-fac7416d787a": {
           "mountPath": "/var/lib/mysql"
         }
       }
