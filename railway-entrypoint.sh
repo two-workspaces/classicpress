@@ -39,6 +39,9 @@ if ! wp core is-installed 2>/dev/null; then
     --title="My ClassicPress Site" --admin_user=admin --admin_password="${CP_ADMIN_PASSWORD:?CP_ADMIN_PASSWORD is not set}" \
     --admin_email="${CP_ADMIN_EMAIL:-admin@example.com}" --skip-email
   wp rewrite structure '/%postname%/'  # the image's .htaccess already routes pretty URLs
+  # WP-CLI doesn't make $cp_db_version global, so the install stores it empty and
+  # every wp-admin page then redirects to the database upgrade screen.
+  wp eval 'include ABSPATH . WPINC . "/version.php"; update_option( "cp_db_version", $cp_db_version );'
 fi
 
 exec apache2-foreground
