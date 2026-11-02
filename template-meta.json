@@ -1,0 +1,8 @@
+{
+  "name": "ClassicPress | Lightweight WordPress Fork Without Blocks",
+  "short_name": "ClassicPress",
+  "description": "WordPress fork that keeps the classic editor, installed before it goes live",
+  "category": "CMS",
+  "image": "https://raw.githubusercontent.com/ClassicPress/ClassicPress-release/2.7.4/wp-admin/images/classicpress-logo.svg",
+  "card_desc": "The WordPress fork that keeps the classic editor and drops blocks, on a private MariaDB, with an admin password generated before the site ever goes public."
+}

@@ -1,0 +1,118 @@
+{
+  "buckets": {},
+  "services": {
+    "58b2e6b5-8381-4c23-9e98-6b8167b3d197": {
+      "icon": "https://raw.githubusercontent.com/ClassicPress/ClassicPress-release/2.7.4/wp-admin/images/classicpress-logo.svg",
+      "name": "ClassicPress",
+      "build": {
+        "dockerfilePath": "Dockerfile"
+      },
+      "deploy": {
+        "startCommand": null,
+        "healthcheckPath": "/healthz",
+        "restartPolicyType": "ON_FAILURE",
+        "restartPolicyMaxRetries": 10
+      },
+      "source": {
+        "repo": "https://github.com/two-workspaces/classicpress",
+        "rootDirectory": "/"
+      },
+      "variables": {
+        "PORT": {
+          "defaultValue": "8080",
+          "description": "Port Apache listens on - leave as is",
+          "isOptional": false
+        },
+        "CP_ADMIN_PASSWORD": {
+          "defaultValue": "${{secret(20)}}",
+          "description": "Password for the 'admin' login, set on first boot only - change it in ClassicPress afterwards",
+          "isOptional": false
+        },
+        "CP_ADMIN_EMAIL": {
+          "defaultValue": "admin@example.com",
+          "description": "Admin email, set on first boot only - change it in Settings > General",
+          "isOptional": false
+        },
+        "CLASSICPRESS_DB_HOST": {
+          "defaultValue": "${{MariaDB.RAILWAY_PRIVATE_DOMAIN}}",
+          "description": "MariaDB host - private network only, leave as is",
+          "isOptional": false
+        },
+        "CLASSICPRESS_DB_NAME": {
+          "defaultValue": "${{MariaDB.MARIADB_DATABASE}}",
+          "description": "Database name - wired to the bundled MariaDB, leave as is",
+          "isOptional": false
+        },
+        "CLASSICPRESS_DB_USER": {
+          "defaultValue": "${{MariaDB.MARIADB_USER}}",
+          "description": "Database user - wired to the bundled MariaDB, leave as is",
+          "isOptional": false
+        },
+        "CLASSICPRESS_DB_PASSWORD": {
+          "defaultValue": "${{MariaDB.MARIADB_PASSWORD}}",
+          "description": "Database password - wired to the bundled MariaDB, leave as is",
+          "isOptional": false
+        }
+      },
+      "networking": {
+        "serviceDomains": {
+          "<hasDomain>": {}
+        }
+      },
+      "volumeMounts": {
+        "58b2e6b5-8381-4c23-9e98-6b8167b3d197": {
+          "mountPath": "/var/www/html"
+        }
+      }
+    },
+    "38a6c194-ac3b-4927-880b-838e3d75fa25": {
+      "icon": "https://raw.githubusercontent.com/docker-library/docs/master/mariadb/logo.png",
+      "name": "MariaDB",
+      "build": {},
+      "deploy": {
+        "startCommand": "docker-entrypoint.sh mariadbd --datadir=/var/lib/mysql/data",
+        "healthcheckPath": null,
+        "restartPolicyType": "ON_FAILURE",
+        "restartPolicyMaxRetries": 10
+      },
+      "source": {
+        "image": "mariadb:11.8.9"
+      },
+      "variables": {
+        "MARIADB_DATABASE": {
+          "defaultValue": "classicpress",
+          "description": "Database name",
+          "isOptional": false
+        },
+        "MARIADB_USER": {
+          "defaultValue": "classicpress",
+          "description": "Database user for ClassicPress",
+          "isOptional": false
+        },
+        "MARIADB_PASSWORD": {
+          "defaultValue": "${{secret(32)}}",
+          "description": "Auto-generated database password",
+          "isOptional": false
+        },
+        "MARIADB_ROOT_PASSWORD": {
+          "defaultValue": "${{secret(32)}}",
+          "description": "Auto-generated root password",
+          "isOptional": false
+        },
+        "RAILWAY_DEPLOYMENT_DRAINING_SECONDS": {
+          "defaultValue": "60",
+          "description": "Time for MariaDB to shut down cleanly on redeploy",
+          "isOptional": false
+        }
+      },
+      "networking": {
+        "serviceDomains": {}
+      },
+      "volumeMounts": {
+        "38a6c194-ac3b-4927-880b-838e3d75fa25": {
+          "mountPath": "/var/lib/mysql"
+        }
+      }
+    }
+  }
+}
